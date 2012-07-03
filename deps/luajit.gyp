@@ -77,14 +77,14 @@
      {
        'destination': '<(PRODUCT_DIR)/lua/jit',
        'files': [
-          '../deps/luajit/lib/bc.lua',
-          '../deps/luajit/lib/bcsave.lua',
-          '../deps/luajit/lib/dis_arm.lua',
-          '../deps/luajit/lib/dis_ppc.lua',
-          '../deps/luajit/lib/dis_x86.lua',
-          '../deps/luajit/lib/dis_x64.lua',
-          '../deps/luajit/lib/dump.lua',
-          '../deps/luajit/lib/v.lua',
+          '../deps/luajit/src/jit/bc.lua',
+          '../deps/luajit/src/jit/bcsave.lua',
+          '../deps/luajit/src/jit/dis_arm.lua',
+          '../deps/luajit/src/jit/dis_ppc.lua',
+          '../deps/luajit/src/jit/dis_x86.lua',
+          '../deps/luajit/src/jit/dis_x64.lua',
+          '../deps/luajit/src/jit/dump.lua',
+          '../deps/luajit/src/jit/v.lua',
       ]
     }],
   },
@@ -249,8 +249,22 @@
       ],
     },
     {
+      'target_name': 'minilua',
+      'type': 'executable',
+      'sources': [
+        'luajit/src/host/minilua.c',
+      ],
+      'include_dirs': [
+        '<(INTERMEDIATE_DIR)',
+        'luajit/src',
+      ],
+    },
+    {
       'target_name': 'buildvm',
       'type': 'executable',
+      'dependencies': [
+        'minilua',
+      ],
       'sources': [
         'luajit/src/host/buildvm.c',
         'luajit/src/host/buildvm_asm.c',
