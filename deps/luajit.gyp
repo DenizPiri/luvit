@@ -252,11 +252,15 @@
       'target_name': 'buildvm',
       'type': 'executable',
       'sources': [
-        'luajit/src/buildvm.c',
-        'luajit/src/buildvm_asm.c',
-        'luajit/src/buildvm_peobj.c',
-        'luajit/src/buildvm_lib.c',
-        'luajit/src/buildvm_fold.c',
+        'luajit/src/host/buildvm.c',
+        'luajit/src/host/buildvm_asm.c',
+        'luajit/src/host/buildvm_peobj.c',
+        'luajit/src/host/buildvm_lib.c',
+        'luajit/src/host/buildvm_fold.c',
+      ],
+      'include_dirs': [
+        '<(INTERMEDIATE_DIR)',
+        'luajit/src',
       ],
       'rules': [
       {
